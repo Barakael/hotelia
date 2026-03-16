@@ -1,0 +1,20 @@
+# Dependencies & build
+backend/vendor/
+frontend/node_modules/
+frontend/dist/
+
+# Env & secrets
+backend/.env
+backend/.env.backup
+**/.env.local
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.log
+
+# Laravel
+backend/storage/*.key
+backend/database/*.sqlite
+backend/database/*.sqlite-journal
