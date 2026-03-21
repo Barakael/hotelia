@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* #FFFBFC page, #D9E2E9 surfaces, #007AAD primary, black text */
+    --background: 340 100% 99%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 197 100% 34%;            /* #007AAD */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 204 24% 88%;           /* #D9E2E9 */
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 204 24% 88%;
+    --muted-foreground: 0 0% 25%;
+
+    --accent: 197 100% 34%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 204 18% 82%;
+    --input: 204 18% 86%;
+    --ring: 197 100% 34%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar — #0C1D32 */
+    --sidebar-background: 213 61% 12%;
+    --sidebar-foreground: 204 24% 88%;
+    --sidebar-primary: 197 100% 34%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 213 45% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 213 50% 10%;
+    --sidebar-ring: 197 100% 34%;
+
+    --success: 153 60% 32%;
+    --success-foreground: 0 0% 100%;
+    --warning: 197 100% 34%;
+    --warning-foreground: 0 0% 100%;
+    --info: 197 100% 34%;
+    --info-foreground: 0 0% 100%;
+
+    --chart-1: 197 100% 34%;
+    --chart-2: 213 61% 12%;
+    --chart-3: 204 24% 70%;
+    --chart-4: 197 60% 45%;
+    --chart-5: 0 72% 45%;
+
+    font-family: 'Inter', sans-serif;
+  }
+
+  .dark {
+    --background: 213 61% 12%;          /* #0C1D32 */
+    --foreground: 340 100% 99%;         /* #FFFBFC */
+
+    --card: 213 50% 16%;
+    --card-foreground: 340 100% 99%;
+
+    --popover: 213 50% 16%;
+    --popover-foreground: 340 100% 99%;
+
+    --primary: 197 100% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 213 40% 20%;
+    --secondary-foreground: 340 100% 99%;
+
+    --muted: 213 40% 20%;
+    --muted-foreground: 204 20% 75%;
+
+    --accent: 197 80% 30%;
+    --accent-foreground: 340 100% 99%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 213 35% 22%;
+    --input: 213 35% 22%;
+    --ring: 197 100% 40%;
+
+    --sidebar-background: 213 61% 8%;
+    --sidebar-foreground: 340 100% 99%;
+    --sidebar-primary: 197 100% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 213 40% 16%;
+    --sidebar-accent-foreground: 340 100% 99%;
+    --sidebar-border: 213 50% 8%;
+    --sidebar-ring: 197 100% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/90 backdrop-blur-xl border border-border/60 shadow-lg;
+  }
+  .pos-gradient {
+    background: linear-gradient(135deg, #007AAD 0%, #0C1D32 100%);
+  }
+  .sidebar-gradient {
+    background: linear-gradient(180deg, #0C1D32 0%, #0A1728 100%);
+  }
+  .dark .sidebar-gradient {
+    background: linear-gradient(180deg, #0C1D32 0%, #081422 100%);
+  }
+  .stat-glow {
+    box-shadow: 0 0 24px -4px rgb(0 122 173 / 0.28);
+  }
+  .navy-glow {
+    box-shadow: 0 0 24px -4px rgb(12 29 50 / 0.28);
+  }
+  /* Active nav item accent bar */
+  .nav-active-bar {
+    position: relative;
+  }
+  .nav-active-bar::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 70%;
+    border-radius: 0 2px 2px 0;
+    background: #007AAD;
+  }
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(222 30% 70%);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(43 100% 50%);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: hsl(205 35% 25%);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: hsl(43 100% 50%);
+}
+
+/* ─── Barcode scanner line animation ─────────────────────────────────────── */
+@keyframes scan {
+  0%   { top: 10%; }
+  50%  { top: 80%; }
+  100% { top: 10%; }
+}
+
+/* ─── iOS Install Prompt animations ──────────────────────────────────────── */
+@keyframes share-bounce {
+  0%, 100% { transform: translateY(0); }
+  30%       { transform: translateY(-6px); }
+  60%       { transform: translateY(-3px); }
+}
+.share-bounce {
+  animation: share-bounce 2s ease-in-out infinite;
+}
+@keyframes share-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.share-pulse {
+  animation: share-pulse 1.4s ease-in-out infinite;
+}
+
+/* Receipt print — 58mm thermal, readable monospace */
+
+@media print {
+  body > *:not(#__receipt__) { display: none !important; }
+
+  #__receipt__ {
+    display: block !important;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.35;
+    color: #000;
+    background: #fff;
+    padding: 2mm 1.5mm;
+    width: 58mm;
+    max-width: 58mm;
+    margin: 0;
+  }
+  #__receipt__ h2 {
+    font-size: 19px;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 6px;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+  #__receipt__ p {
+    text-align: center;
+    color: #000;
+    margin: 0 0 3px;
+    word-break: break-word;
+  }
+  #__receipt__ p.meta {
+    font-size: 13px;
+  }
+  #__receipt__ p.footer {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  #__receipt__ p.powered {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  #__receipt__ hr {
+    border: none;
+    border-top: 1px dashed #000;
+    margin: 10px 0;
+  }
+  #__receipt__ .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 14px;
+    margin: 4px 0;
+  }
+  #__receipt__ .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 14px;
+    margin: 4px 0;
+  }
+  #__receipt__ .total {
+    font-weight: 700;
+    font-size: 17px;
+    border-top: 1px solid #000;
+    padding-top: 8px;
+    margin-top: 6px;
+  }
+
+  @page { size: 58mm auto; margin: 0; }
+}
